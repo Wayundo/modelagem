@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main() {
+    char produto[50]; // Nome do produto
+    int vendasMes[4]; // Quantidade de vendas dos últimos 4 meses
+    int tempoReposicao; // Tempo de reposição em dias
+    int estoqueAtual; // Estoque atual
+    int loteReposicao; // Lote de reposição
+
+    // Coleta de informações do produto
+    printf("Nome do produto: ");
+    scanf("%s", produto);
+
+    printf("Quantidade de vendas no mês 1: ");
+    scanf("%d", &vendasMes[0]);
+
+    printf("Quantidade de vendas no mês 2: ");
+    scanf("%d", &vendasMes[1]);
+
+    printf("Quantidade de vendas no mês 3: ");
+    scanf("%d", &vendasMes[2]);
+
+    printf("Quantidade de vendas no mês 4: ");
+    scanf("%d", &vendasMes[3]);
+
+    printf("Tempo de reposição (em dias): ");
+    scanf("%d", &tempoReposicao);
+
+    printf("Estoque atual: ");
+    scanf("%d", &estoqueAtual);
+
+    printf("Lote de reposição: ");
+    scanf("%d", &loteReposicao);
+
+    // Calcula a venda média diária
+    float vendaMediaDiaria = ((float)(vendasMes[0] + vendasMes[1] + vendasMes[2] + vendasMes[3]) / 4) / 25;
+
+    // Calcula o estoque mínimo
+    float estoqueMinimo = tempoReposicao * vendaMediaDiaria;
+
+    // Calcula o estoque máximo
+    float estoqueMaximo = estoqueMinimo + loteReposicao;
+
+    // Tomada de decisão
+    if (estoqueAtual > estoqueMinimo) {
+        printf("Não repor o estoque de %s.\n", produto);
+    } else {
+        printf("Repor o estoque de %s.\n", produto);
+    }
+
+    // Exibe os resultados
+    printf("Venda média diária: %.2f\n", vendaMediaDiaria);
+    printf("Estoque mínimo: %.2f\n", estoqueMinimo);
+    printf("Estoque máximo: %.2f\n", estoqueMaximo);
+
+    return 0;
+}
